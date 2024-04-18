@@ -28,7 +28,8 @@ import { SettingsMenu } from '../../lib/SettingsMenu';
 
 const Home: NextPage = () => {
   const router = useRouter();
-  const { name: roomName } = router.query;
+  const { name: raw } = router.query;
+  const roomName = typeof raw === "string" ? raw.substring(4,8) + "-" + raw.substring(8,12) : "never";
 
   const [preJoinChoices, setPreJoinChoices] = React.useState<LocalUserChoices | undefined>(
     undefined,
@@ -55,7 +56,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>LiveKit Meet</title>
+        <title>Genius Bar {roomName}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
